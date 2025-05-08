@@ -1,0 +1,172 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CodeEditor from "../components/CodeEditor.astro";
+import OutputPanel from "../components/OutputPanel.astro";
+---
+
+<Layout title="EGGlang Playground">
+  <section class="hero">
+    <div class="logo-animation">
+      <div class="egg-icon"></div>
+    </div>
+    <h1>EGGlang Playground</h1>
+    <p>
+      Write and test your EGGlang code in this interactive online environment
+    </p>
+  </section>
+
+  <div class="playground">
+    <CodeEditor />
+    <OutputPanel />
+  </div>
+
+  <section class="info-section">
+    <div class="info-card">
+      <h3><i class="fas fa-book"></i> Documentation</h3>
+      <p>
+        Learn more about EGGlang syntax, built-in functions, and programming
+        paradigms.
+      </p>
+      <a href="/documentation" class="info-link">View Docs</a>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-code"></i> Examples</h3>
+      <p>Explore example programs to get started with EGGlang programming.</p>
+      <a href="/examples" class="info-link">View Examples</a>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-github"></i> Source</h3>
+      <p>Check out the source code for EGGlang on GitHub.</p>
+      <a href="https://github.com/hemanthj257/EGGLang" class="info-link"
+        >View Source</a
+      >
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 2rem 0;
+    animation: slideIn 0.5s ease-out;
+  }
+
+  .logo-animation {
+    margin: 0 auto 1.5rem;
+    width: 80px;
+    height: 80px;
+    position: relative;
+  }
+
+  .egg-icon {
+    width: 60px;
+    height: 80px;
+    background-color: var(--color-primary);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    margin: 0 auto;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .playground {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    height: calc(100vh - 280px);
+    min-height: 400px;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-in;
+  }
+
+  .info-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+    animation: slideIn 0.5s ease-out 0.3s both;
+  }
+
+  .info-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .info-card h3 {
+    color: var(--color-dark);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .info-card i {
+    color: var(--color-accent);
+  }
+
+  .info-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-link {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-accent);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .info-link:hover {
+    color: var(--color-dark);
+  }
+
+  @media (max-width: 768px) {
+    .playground {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .playground > * {
+      height: 400px;
+      margin-bottom: 1rem;
+    }
+
+    .info-section {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

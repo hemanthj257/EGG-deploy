@@ -1,0 +1,88 @@
+---
+
+---
+
+<nav class="navbar">
+  <div class="container">
+    <div class="logo">
+      <a href="/">
+        <span class="egg-text">🥚EGG</span><span class="lang-text">lang</span>
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="/.">Home</a>
+      <a href="/examples">Examples</a>
+      <a href="/documentation">Documentation</a>
+      <a
+        href="https://github.com/yourusername"
+        target="_blank"
+        aria-label="GitHub"
+      >
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav.navbar {
+    background-color: var(--color-dark);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .egg-text {
+    color: var(--color-primary);
+  }
+
+  .lang-text {
+    color: var(--color-light);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--color-light);
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-links i {
+    font-size: 1.2rem;
+    color: var(--color-light);
+    transition: color 0.2s ease-in-out;
+  }
+
+  .nav-links i:hover {
+    color: var(--color-primary);
+  }
+</style>

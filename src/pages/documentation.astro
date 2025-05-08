@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="EGGlang Documentation">
+  <section class="documentation-section">
+    <h1>EGGlang Documentation</h1>
+    <p>
+      Learn about EGGlang syntax, built-in functions, and programming paradigms.
+    </p>
+
+    <div class="documentation-content">
+      <h2>Getting Started</h2>
+      <p>
+        EGGlang is a simple programming language designed for learning and
+        experimentation. Here's how to get started:
+      </p>
+      <pre><code>
+do(
+    define(x, 10),
+    define(y, 20),
+    define(sum, +(x, y)),
+    print(sum)
+)
+      </code></pre>
+
+      <h2>Built-in Functions</h2>
+      <ul>
+        <li><code>print(value)</code>: Prints the value to the output.</li>
+        <li><code>+(a, b)</code>: Adds two numbers.</li>
+        <li><code>-(a, b)</code>: Subtracts two numbers.</li>
+        <li><code>*(a, b)</code>: Multiplies two numbers.</li>
+        <li><code>/(a, b)</code>: Divides two numbers.</li>
+      </ul>
+
+      <h2>Control Structures</h2>
+      <p>EGGlang supports the following control structures:</p>
+      <ul>
+        <li>
+          <code>if(condition, then, else)</code>: Executes <code>then</code> if the
+          condition is true, otherwise executes <code>else</code>.
+        </li>
+        <li>
+          <code>while(condition, body)</code>: Repeats the body while the
+          condition is true.
+        </li>
+        <li>
+          <code>do(...)</code>: Executes multiple expressions in sequence.
+        </li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .documentation-section {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .documentation-content {
+    text-align: left;
+    margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .documentation-content h2 {
+    color: var(--color-dark);
+    margin-top: 1.5rem;
+  }
+
+  .documentation-content p {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .documentation-content pre {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  .documentation-content ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    color: #666;
+  }
+
+  .documentation-content li {
+    margin-bottom: 0.5rem;
+  }
+</style>

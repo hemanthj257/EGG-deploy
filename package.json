@@ -1,0 +1,24 @@
+{
+  "name": "egg-playground",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "@codemirror/basic-setup": "^0.20.0",
+    "@codemirror/commands": "^6.8.1",
+    "@codemirror/lang-javascript": "^6.2.3",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.36.7",
+    "@tailwindcss/vite": "^4.1.5",
+    "astro": "^5.7.11",
+    "autoprefixer": "^10.4.21",
+    "sass": "^1.87.0",
+    "tailwindcss": "^4.1.5"
+  }
+}

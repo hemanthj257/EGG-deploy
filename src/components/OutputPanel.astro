@@ -1,0 +1,172 @@
+---
+
+---
+
+<div class="output-container">
+  <div class="output-header">
+    <h3>Output</h3>
+    <button id="clear-button" class="clear-button">
+      <i class="fas fa-trash"></i> Clear
+    </button>
+  </div>
+  <div id="output-panel" class="output-panel"></div>
+</div>
+
+<style>
+  .output-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+  }
+
+  .output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+  }
+
+  .output-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .clear-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border: 1px solid var(--color-light);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .clear-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .output-panel {
+    flex: 1;
+    padding: 1rem;
+    overflow: auto;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    background-color: #fff;
+    color: var(--color-dark);
+    white-space: pre-wrap;
+  }
+
+  .output-line {
+    margin-bottom: 0.5rem;
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  .error {
+    color: var(--color-error);
+    border-left: 3px solid var(--color-error);
+    padding-left: 0.5rem;
+    background-color: rgba(214, 40, 40, 0.05);
+    padding: 0.5rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .success {
+    color: var(--color-success);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  import eggInterpreter from "../scripts/egg-interpreter.js";
+
+  // Initialize output panel
+  const initOutputPanel = () => {
+    const outputPanel = document.getElementById("output-panel");
+    const clearButton = document.getElementById("clear-button");
+
+    if (!outputPanel || !clearButton) return;
+
+    // Clear output
+    clearButton.addEventListener("click", () => {
+      outputPanel.innerHTML = "";
+    });
+
+    // Handle run code event
+    document.addEventListener("run-egg-code", (event) => {
+      const code = event.detail.code;
+
+      // Add loading indicator
+      const loadingLine = document.createElement("div");
+      loadingLine.className = "output-line";
+      loadingLine.textContent = "Running EGG code...";
+      outputPanel.appendChild(loadingLine);
+
+      // Execute with a small delay for UI feedback
+      setTimeout(() => {
+        try {
+          // Call the EGG interpreter
+          const result = eggInterpreter.run(code);
+
+          // Remove loading indicator
+          outputPanel.removeChild(loadingLine);
+
+          // Add results to the output panel
+          if (result.error) {
+            const errorLine = document.createElement("div");
+            errorLine.className = "output-line error";
+            errorLine.textContent = `Error: ${result.error}`;
+            outputPanel.appendChild(errorLine);
+          }
+
+          if (result.output) {
+            const lines = result.output.split("\n");
+            lines.forEach((line) => {
+              if (line.trim()) {
+                const outputLine = document.createElement("div");
+                outputLine.className = "output-line success";
+                outputLine.textContent = line;
+                outputPanel.appendChild(outputLine);
+              }
+            });
+          }
+        } catch (err) {
+          // Remove loading indicator
+          outputPanel.removeChild(loadingLine);
+
+          // Add error
+          const errorLine = document.createElement("div");
+          errorLine.className = "output-line error";
+          errorLine.textContent = `Runtime Error: ${err.message}`;
+          outputPanel.appendChild(errorLine);
+        }
+
+        // Scroll to bottom
+        outputPanel.scrollTop = outputPanel.scrollHeight;
+      }, 300);
+    });
+  };
+
+  // Initialize when document is loaded
+  document.addEventListener("DOMContentLoaded", initOutputPanel);
+</script>
