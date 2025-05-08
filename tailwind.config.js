@@ -6,4 +6,3 @@ module.exports = {
   },
   plugins: [], // Add any Tailwind plugins here if needed
 };
-
